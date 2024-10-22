@@ -6,6 +6,7 @@ export function listProducts(req: Request, res: Response) {
 
 export function createProduct(req: Request, res: Response) {
   res.send("Creating a product");
+  console.log(req.body);
 }
 
 export function deleteProduct(req: Request, res: Response) {

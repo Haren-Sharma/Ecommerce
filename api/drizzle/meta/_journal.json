@@ -8,6 +8,13 @@
       "when": 1729577140441,
       "tag": "0000_graceful_mandroid",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1729579073720,
+      "tag": "0001_cold_black_panther",
+      "breakpoints": true
     }
   ]
 }

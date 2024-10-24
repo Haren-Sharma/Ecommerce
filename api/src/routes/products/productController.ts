@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { db } from "../../db/index";
 import { productsTable } from "../../db/productsSchema";
 import { eq } from "drizzle-orm";
+import _ from "lodash";
 
 export async function listProducts(req: Request, res: Response) {
   try {
@@ -16,7 +17,7 @@ export async function createProduct(req: Request, res: Response) {
   try {
     const [product] = await db
       .insert(productsTable)
-      .values(req.body)
+      .values(req.cleanBody)
       .returning();
     res.status(201).json(product);
   } catch (e) {
@@ -62,7 +63,7 @@ export async function updateProduct(req: Request, res: Response) {
   try {
     const [product] = await db
       .update(productsTable)
-      .set(req.body)
+      .set(req.cleanBody)
       .where(eq(productsTable.id, Number(req.params?.id)))
       .returning();
       if (!product) {
@@ -72,7 +73,6 @@ export async function updateProduct(req: Request, res: Response) {
       } else {
         res.json(product);
       }
-    res.json(product);
   } catch (e) {
     res.status(500).send(e);
   }

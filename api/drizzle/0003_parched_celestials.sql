@@ -5,3 +5,13 @@ CREATE TABLE IF NOT EXISTS "products" (
 	"image" varchar(255),
 	"price" double precision NOT NULL
 );
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "users" (
+	"id" uuid PRIMARY KEY NOT NULL,
+	"email" varchar(255) NOT NULL,
+	"password" varchar(255) NOT NULL,
+	"role" varchar(255) DEFAULT 'user' NOT NULL,
+	"name" varchar(255),
+	"address" text,
+	CONSTRAINT "users_email_unique" UNIQUE("email")
+);

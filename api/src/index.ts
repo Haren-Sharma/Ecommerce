@@ -1,5 +1,6 @@
 import express, { json } from "express";
 import products from "../src/routes/products";
+import authRoute from "../src/routes/auth";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/products", products);
+app.use("/auth", authRoute);
 
 app.listen(PORT, () => {
   console.log(`App listening on PORT:${PORT}`);

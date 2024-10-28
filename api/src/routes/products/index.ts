@@ -11,13 +11,14 @@ import {
   createProductsSchema,
   updateProductSchema,
 } from "../../db/productsSchema";
+import { verifyJwt } from "../../middleware/verifyJwt";
 
 const router = Router();
 
 router.get("/", listProducts);
 router.get("/:id", getProductById);
 router.put("/:id", validateData(updateProductSchema), updateProduct);
-router.post("/", validateData(createProductsSchema), createProduct);
+router.post("/", verifyJwt, validateData(createProductsSchema), createProduct);
 router.delete("/:id", deleteProduct);
 
 export default router;

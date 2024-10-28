@@ -21,7 +21,7 @@ export async function createProduct(req: Request, res: Response) {
       .returning();
     res.status(201).json(product);
   } catch (e) {
-    res.status(500).send(e);
+    res.status(400).send(e);
   }
 }
 

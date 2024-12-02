@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import { v4 as uuidv4 } from "uuid";
 import { hash, compare } from "bcrypt";
-import { db } from "../../db";
-import { usersTable } from "../../db/usersSchema";
+import { db } from "../../db/index.js";
+import { usersTable } from "../../db/usersSchema.js";
 import { eq } from "drizzle-orm";
 import jwt from "jsonwebtoken";
 
@@ -35,7 +35,7 @@ export const loginUser = async (req: Request, res: Response) => {
       const match = await compare(password, user.password);
       console.log(match);
       if (match) {
-        const token = jwt.sign(user, process.env.JWT_KEY!, { expiresIn: "1h" });
+        const token = jwt.sign({userId:user.id,role:user.role}, process.env.JWT_KEY!, { expiresIn: "1h" });
         res.status(200).json({ msg: "User signed in successfully", token });
       } else {
         res.status(400).send("Password incoorect");

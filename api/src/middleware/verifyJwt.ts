@@ -11,11 +11,10 @@ export const verifyJwt = (
   if (!token) {
     res.status(401).json({ error: "Token not provided" });
   } else {
-    jwt.verify(token, process.env.JWT_KEY!, (err, decoded) => {
+    jwt.verify(token, process.env.JWT_KEY!, (err, decoded:any) => {
       if (err) {
         res.status(403).json({ error: "Invalid token" });
       }
-
       // Optionally attach decoded info to the request object for use in the route
       req.user = decoded;
       next();

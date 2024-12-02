@@ -1,6 +1,6 @@
 import express, { json } from "express";
-import products from "../src/routes/products";
-import authRoute from "../src/routes/auth";
+import products from "../src/routes/products/index.js";
+import authRoute from "../src/routes/auth/index.js";
 
 const app = express();
 
